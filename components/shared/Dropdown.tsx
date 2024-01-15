@@ -30,6 +30,12 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
   const [categories, setCategories] = useState<ICategory[]>([])
   const [newCategory, setNewCategory] = useState('');
 
+  const predefinedCategories = [
+    { _id: '1', name: 'Category 1' },
+    { _id: '2', name: 'Category 2' },
+    // Add more predefined categories as needed
+  ];
+
   const handleAddCategory = () => {
     createCategory({
       categoryName: newCategory.trim()
@@ -61,6 +67,12 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
           </SelectItem>
         ))}
 
+        {predefinedCategories.map((category) => (
+          <SelectItem key={category._id} value={category._id} className="select-item p-regular-14">
+            {category.name}
+          </SelectItem>
+        ))}
+
         <AlertDialog>
           <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">Add new category</AlertDialogTrigger>
           <AlertDialogContent className="bg-white">
@@ -81,4 +93,4 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
   )
 }
 
-export default Dropdown
+export default Dropdown;
